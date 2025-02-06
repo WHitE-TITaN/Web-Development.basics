@@ -20,6 +20,3 @@ document.getElementById("Counter").textContent = counetr;
         counetr--;
         document.getElementById("Counter").textContent = counetr;
     }
-    document.getElementById("Exit").onclick = function(){
-        running = false;
-    }
