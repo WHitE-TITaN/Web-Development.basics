@@ -1,7 +1,7 @@
 // main js file
 window.alert("PAGE REFRESHED WELCOME !");
 console.log(`launch Successful`);
-let counetr = 990;
+let counetr = 1000;
 let running = true;
 
 document.getElementById("Counter").textContent = counetr;
