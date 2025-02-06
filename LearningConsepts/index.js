@@ -1,5 +1,5 @@
 console.log(`Hello !`);
-window.alert(`Welcome Alert`);
+window.alert(`REFRESHED ! 🔔`);
 
 //commment here ! 
 /* Comment here !*/
@@ -30,3 +30,13 @@ console.log(variable += 10);
 
 variable *= 10;
 console.log(variable);
+
+//taking input with window prompt !;
+/*let userInput = window.prompt("Enter your user name !");
+console.log(userInput);*/
+let userName;
+document.getElementById("submit").onclick = function(){
+    userName = document.getElementById("userName").value;
+    document.getElementById("my_name").textContent = `HELLO ${userName}`;
+    console.log(userName); 
+}
