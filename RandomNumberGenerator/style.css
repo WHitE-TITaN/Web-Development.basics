@@ -14,12 +14,77 @@
     border-radius: 10px;
 }
 
+.Submmit{
+    padding: 10px 20px;
+    font-size: 15px;
+    font-family: monospace;
+    border-radius: 10px;
+    background-color: cornflowerblue;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.25s;
+}
+
+.LowRange{
+    padding: 10px 20px;
+    font-size: 15px;
+    color: black;
+    font-family: monospace;
+    border-radius: 10px;
+    border-color: gray;
+    cursor: pointer;
+    transition: background-color 0.25s;
+}
+
+.HighRange{
+    padding: 10px 20px;
+    font-size: 15px;
+    font-family: monospace;
+    border-radius: 10px;
+    border-color: gray;
+    cursor: pointer;
+    transition: background-color 0.25s;
+}
+
+.newSuffel{
+    padding: 10px 20px;
+    font-size: 15px;
+    font-family: monospace;
+    border-radius: 10px;
+    background-color: cornflowerblue;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.25s;
+}
 
 .OUTPUT{
     margin-top: 0px;
 }
 
-.Input{
-    align-items: center;
-    font-family: monospace;
+.newSuffel:hover{
+    background-color: darkslateblue;
+}
+
+.Submmit:hover{
+    background-color: darkslateblue;
+}
+
+.LowRange:hover{
+    background-color: gray;
+}
+
+.HighRange:hover{
+    background-color: gray;
+}
+
+.HighRange::placeholder{
+    color: black;
+    font: bolder;
+}
+
+.LowRange::placeholder{
+    color: black;
+    font: bolder;
 }
