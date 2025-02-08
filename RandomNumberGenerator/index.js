@@ -7,12 +7,15 @@ document.getElementById("OutPut").textContent = `${randomGenerated}`;
 
 console.log(randomGenerated);
 window.onload = function(){
+    //check if the window is loaded or not 
+    //dont start the calculations prior to the loading window.
     window.onload = function() {
         document.getElementById("OutPut").textContent = `${randomGenerated}`;
     };
 
     document.getElementById("Submmit").onclick = function(){
         minimum = Number(document.getElementById("LowRange").value);
+        //nessary to convert to int before apply it 
         maximum = Number(document.getElementById("HighRange").value);
 
         window.alert("Range Changed !");
