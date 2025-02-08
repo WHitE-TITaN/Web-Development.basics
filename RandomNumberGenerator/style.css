@@ -1,0 +1,25 @@
+#greetings{
+    margin-top: 50px;
+    text-align: center;
+    align-items: center;
+    font-family: monospace;
+}
+
+#OutPut{
+    margin-top: 2px;
+    text-align: center;
+    font-family: monospace;
+    font-size: 100px;
+    border: 1px solid black;
+    border-radius: 10px;
+}
+
+
+.OUTPUT{
+    margin-top: 0px;
+}
+
+.Input{
+    align-items: center;
+    font-family: monospace;
+}
