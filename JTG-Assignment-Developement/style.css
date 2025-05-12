@@ -256,7 +256,24 @@
             margin-left: 5px;
         }
 
+
+
         /* Info Sections */
+        /* .info-section {
+            display: flex;
+            align-items: center;
+            padding: 80px 0;
+        }
+
+        .info-content {
+            flex: 1;
+            padding-right: 50px;
+        }
+
+        .info-image {
+            flex: 1;
+        } */
+
         .info-section .container {
             display: flex;
             flex-wrap: wrap; /* Makes it responsive on smaller screens */
@@ -282,63 +299,9 @@
         }
 
 
-        
-        
-        /*.info-section {
-            display: flex;
-            align-items: center;
-            padding: 80px 0;
-        }
-
-        .info-content {
-            flex: 1;
-            padding-right: 50px;
-        }
-
-        .info-image {
-            flex: 1;
-        }*/
-
-        .info-section {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            justify-content: space-between;
-            padding: 50px 20px;
-            gap: 30px;
-        }
+/*xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx*/
 
         .info-section.reverse {
-            flex-direction: row-reverse;
-        }
-
-        .info-image, .info-content {
-            flex: 1 1 50%;
-            min-width: 300px;
-        }
-
-        .info-image img {
-            max-width: 100%;
-            height: auto;
-        }
-
-        .info-content {
-            padding: 20px;
-        }
-
-        .info-title {
-            font-size: 32px;
-            margin-bottom: 20px;
-            font-weight: 600;
-        }
-
-        .info-text {
-            margin-bottom: 30px;
-            color: #666;
-        }
-
-
-        /* .info-section.reverse {
             flex-direction: row-reverse;
         }
 
@@ -356,7 +319,7 @@
         .info-text {
             margin-bottom: 30px;
             color: #666;
-        } */
+        }
 
         /* Partners Section */
         .partners {
