@@ -194,67 +194,68 @@
 
         /* Video Section */
         .video-section {
-            display: flex;
-            align-items: center;
-            padding: 60px 0;
-        }
+    display: flex;
+    align-items: center;
+    padding: 60px 0;
+}
 
-        /*.video-container {
-            flex: 1;
-            position: relative;
-        }
+.video-container {
+   width: 900px;
+    max-width: 100%;
+    position: relative;
+    border-radius: 20px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    margin: auto; /* centers it */ /* Soft shadow behind video */
+}
 
-        .video-placeholder {
-            position: relative;
-            border-radius: 10px;
-            overflow: hidden;
-        }
+video {
+    border-radius: 20px; /* Rounded corners for the video itself */
+    display: block;
+    width: 100%;
+    height: auto;
+}
 
-        .play-button {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 80px;
-            height: 80px;
-            background-color: #1E88E5;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-        }*/
+.play-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100px;
+    height: 100px;
+    background-color: #1E88E5;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    opacity: 0.8;
+    z-index: 2;
+}
 
-        .video-container {
-            position: relative;
-            max-width: 800px;
-            margin: auto;
-        }
+/* Triangle inside the play button */
+.play-button::before {
+   content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-left: 16px solid white;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    left: 50%;
+    top: 50%;
+    transform: translate(-40%, -50%);
+}
 
-        .play-button {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 60px;
-            height: 60px;
-            background: url('assets/logo/play-icon.png') no-repeat center center;
-            background-size: contain;
-            cursor: pointer;
-            z-index: 2;
-        }
+
+
+
+
+
 
 
         
-        .play-button::after {
-            content: '';
-            width: 0;
-            height: 0;
-            border-top: 15px solid transparent;
-            border-bottom: 15px solid transparent;
-            border-left: 25px solid white;
-            margin-left: 5px;
-        }
+
 
 
 
@@ -321,34 +322,34 @@
             color: #666;
         } */
          
-.container.reverse {
-    flex-direction: row-reverse;
-}
+        .container.reverse {
+            flex-direction: row-reverse;
+        }
 
-.info-content, .info-image {
-    flex: 1;
-}
+        .info-content, .info-image {
+            flex: 1;
+        }
 
-.info-image img {
-    max-width: 100%;
-    height: auto;
-    display: block;
-}
+        .info-image img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
 
-.info-title {
-    font-size: 32px;
-    margin-bottom: 20px;
-    font-weight: 600;
-}
+        .info-title {
+            font-size: 32px;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
 
-.info-text {
-    margin-bottom: 30px;
-    color: #666;
-}
+        .info-text {
+            margin-bottom: 30px;
+            color: #666;
+        }
 
 
         /* Partners Section */
-        .partners {
+        /* .partners {
             padding: 60px 0;
             text-align: center;
         }
@@ -371,9 +372,41 @@
         .partner-logo:hover {
             filter: grayscale(0);
             opacity: 1;
-        }
+        } */
 
-        /* Testimonials Section */
+        .partners {
+    padding: 60px 0;
+    text-align: center;
+}
+
+.partner-logos {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin: 40px 0;
+}
+
+.partner-logo {
+    flex-basis: calc(15% - 20px); /* smaller logos */
+    margin: 10px;
+    opacity: 0.9;
+    transition: all 0.3s ease;
+}
+
+.partner-logo img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    width: 80px;  /* reduce logo size */
+    margin: 0 auto;
+}
+
+.partner-logo:hover {
+    opacity: 1;
+}
+
+        /* Testimonials Section xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx*/
         .testimonials {
             padding: 80px 0;
             text-align: center;
