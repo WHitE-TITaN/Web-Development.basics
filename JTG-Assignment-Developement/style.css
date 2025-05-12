@@ -301,7 +301,7 @@
 
 /*xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx*/
 
-        .info-section.reverse {
+        /* .info-section.reverse {
             flex-direction: row-reverse;
         }
 
@@ -319,7 +319,33 @@
         .info-text {
             margin-bottom: 30px;
             color: #666;
-        }
+        } */
+         
+.container.reverse {
+    flex-direction: row-reverse;
+}
+
+.info-content, .info-image {
+    flex: 1;
+}
+
+.info-image img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+.info-title {
+    font-size: 32px;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.info-text {
+    margin-bottom: 30px;
+    color: #666;
+}
+
 
         /* Partners Section */
         .partners {
