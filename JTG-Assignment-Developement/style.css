@@ -322,9 +322,6 @@ video {
             color: #666;
         } */
          
-        .container.reverse {
-            flex-direction: row-reverse;
-        }
 
         .info-content, .info-image {
             flex: 1;
