@@ -1,3 +1,22 @@
+document.addEventListener("DOMContentLoaded", function () {
+  const faders = document.querySelectorAll('.fade-in-on-scroll');
+
+  const appearOnScroll = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target); // fade in only once
+      }
+    });
+  }, { threshold: 0.1 });
+
+  faders.forEach(el => {
+    appearOnScroll.observe(el);
+  });
+});
+
+
+
 document.addEventListener('DOMContentLoaded', function () {
     const video = document.getElementById('promoVideo');
     const playBtn = document.getElementById('playBtn');
@@ -22,17 +41,36 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 
-const video = document.getElementById('promoVideo');
-const playBtn = document.getElementById('playBtn');
-playBtn.addEventListener('click', () => {
-    if (video.paused) {
-        video.play();
-        playBtn.style.display = 'none'; // Hide play button when video is playing
-    } else {
-        video.pause();
-        playBtn.style.display = 'flex'; // Show play button when video is paused
-    }
-});
-video.addEventListener('ended', () => {
-    playBtn.style.display = 'flex'; // Show play button when video ends
+
+
+document.addEventListener('DOMContentLoaded', function () {
+  const testimonials = document.querySelectorAll('.testimonial');
+  const dots = document.querySelectorAll('.dot');
+  let currentIndex = 0;
+  let interval = setInterval(nextTestimonial, 5000);
+
+  function showTestimonial(index) {
+    testimonials.forEach((t, i) => {
+      t.classList.remove('active');
+      dots[i].classList.remove('active');
+    });
+    testimonials[index].classList.add('active');
+    dots[index].classList.add('active');
+    currentIndex = index;
+  }
+
+  function nextTestimonial() {
+    let next = (currentIndex + 1) % testimonials.length;
+    showTestimonial(next);
+  }
+
+  dots.forEach((dot, i) => {
+    dot.addEventListener('click', () => {
+      clearInterval(interval); // Stop and restart autoplay on click
+      showTestimonial(i);
+      interval = setInterval(nextTestimonial, 5000);
+    });
+  });
+
+  showTestimonial(currentIndex); // Start with first
 });
