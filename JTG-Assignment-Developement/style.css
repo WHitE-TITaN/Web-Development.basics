@@ -620,7 +620,7 @@ video {
         .contact-details-row {
         display: flex;
         justify-content: center;
-        gap: 30px;
+        gap: 60px;
         flex-wrap: wrap;
         margin-bottom: 40px;
         }
@@ -712,128 +712,80 @@ video {
         }
 
         /* Footer */
-        footer {
-            background-color: #1A2238;
-            color: white;
-            padding: 60px 0 30px;
-        }
+       .custom-footer {
+  background-color: #1f2539;
+  padding: 60px 40px;
+  color: #fff;
+  font-family: 'Segoe UI', sans-serif;
+}
 
-        .footer-grid {
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            margin-bottom: 50px;
-        }
+.footer-container {
+  max-width: 1200px;
+  margin: auto;
+}
 
-        .footer-column {
-            flex-basis: calc(25% - 30px);
-            margin-bottom: 30px;
-        }
+.footer-columns {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
 
-        .footer-title {
-            font-size: 18px;
-            font-weight: 600;
-            margin-bottom: 20px;
-            position: relative;
-            padding-bottom: 10px;
-        }
+.footer-column {
+  flex: 1;
+  min-width: 160px;
+  margin: 20px;
+}
 
-        .footer-title::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 40px;
-            height: 2px;
-            background-color: #1E88E5;
-        }
+.footer-column ul {
+  list-style: none;
+  padding: 0;
+}
 
-        .footer-links li {
-            margin-bottom: 10px;
-        }
+.footer-column li {
+  margin: 8px 0;
+  color: #ddd;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+}
 
-        .footer-links a:hover {
-            color: #1E88E5;
-        }
+.footer-title {
+  color: #fff;
+  margin-bottom: 15px;
+  font-weight: bold;
+  font-size: 16px;
+}
 
-        .footer-bottom {
-            text-align: center;
-            padding-top: 30px;
-           
-        }
+.footer-column a {
+  color: #ccc;
+  text-decoration: none;
+}
 
-        .footer-social {
-            display: flex;
-            justify-content: center;
-            margin-top: 20px;
-        }
+.footer-column a:hover {
+  text-decoration: underline;
+}
 
-        .footer-social li {
-            margin: 0 10px;
-        }
+.contact-column img {
+  width: 20px;
+  height: 20px;
+}
 
-        /* Responsive Styles */
-        @media (max-width: 992px) {
-            .feature-item {
-                flex-basis: calc(50% - 30px);
-            }
-            
-            .pricing-plan {
-                flex-basis: calc(50% - 20px);
-                margin-bottom: 30px;
-            }
-            
-            .footer-column {
-                flex-basis: calc(50% - 20px);
-            }
-        }
+.footer-social {
+  margin-top: 20px;
+}
 
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-            
-            .hero h1 {
-                font-size: 36px;
-            }
-            
-            .info-section {
-                flex-direction: column;
-            }
-            
-            .info-section.reverse {
-                flex-direction: column;
-            }
-            
-            .info-content, .info-section.reverse .info-content {
-                padding: 0;
-                margin-bottom: 30px;
-            }
-            
-            .contact-grid {
-                flex-direction: column;
-            }
-            
-            .contact-form {
-                padding-right: 0;
-                margin-bottom: 30px;
-            }
-        }
+.footer-social a {
+  margin-right: 15px;
+  display: inline-block;
+}
 
-        @media (max-width: 576px) {
-            .feature-item {
-                flex-basis: 100%;
-            }
-            
-            .pricing-plan {
-                flex-basis: 100%;
-            }
-            
-            .footer-column {
-                flex-basis: 100%;
-            }
-            
-            .partner-logo {
-                flex-basis: calc(33.333% - 20px);
-            }
-        }
+.footer-social img {
+  width: 30px;
+  height: 30px;
+  transition: transform 0.3s;
+}
+
+.footer-social img:hover {
+  transform: scale(1.2);
+}
