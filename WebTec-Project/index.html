@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Profile Website</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link href="style.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Simple Profile Website</h1>
+            <p>Click on any user profile to view their bio and all posts</p>
+        </div>
+
+        <div id="posts-container">
+            <!-- Posts will be dynamically loaded here -->
+        </div>
+    </div>
+
+    <!-- Bio Modal -->
+    <div id="bio-modal" class="bio-modal">
+        <div class="bio-content">
+            <button class="close-btn">&times;</button>
+            <div class="bio-header">
+                <div class="bio-avatar" id="bio-avatar"></div>
+                <h2 id="bio-name"></h2>
+                <p id="bio-username"></p>
+            </div>
+            <div class="bio-intro" id="bio-intro"></div>
+            <div class="bio-posts">
+                <h3>All Posts</h3>
+                <div id="bio-posts-container"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- New Post Button -->
+    <button class="new-post-btn" id="new-post-btn" title="Create New Post">+</button>
+
+    <!-- New Post Modal -->
+    <div id="post-modal" class="post-modal">
+        <div class="post-content-modal">
+            <button class="close-btn" id="close-post-modal">&times;</button>
+            <h2>Create New Post</h2>
+            <form class="post-form" id="post-form">
+                <div class="form-group">
+                    <label for="post-user">Post as:</label>
+                    <select id="post-user" required>
+                        <option value="">Select a user...</option>
+                        <option value="john_doe">John Doe (@john_doe)</option>
+                        <option value="jane_smith">Jane Smith (@jane_smith)</option>
+                        <option value="mike_wilson">Mike Wilson (@mike_wilson)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="post-content">What's on your mind?</label>
+                    <textarea id="post-content" placeholder="Share your thoughts..." required maxlength="500"></textarea>
+                    <small style="color: #666;">Max 500 characters</small>
+                </div>
+                <div class="form-buttons">
+                    <button type="button" class="btn btn-secondary" id="cancel-post">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Post</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Sample user data
+        const users = {
+            'john_doe': {
+                name: 'John Doe',
+                username: '@john_doe',
+                avatar: 'JD',
+                bio: 'Software developer passionate about creating amazing web experiences. Love coding, coffee, and exploring new technologies. Always learning something new!',
+                posts: [
+                    {
+                        content: 'Just finished building a new React component library! Excited to share it with the community.',
+                        timestamp: '2 hours ago'
+                    },
+                    {
+                        content: 'Beautiful sunset today! Sometimes you need to step away from the code and enjoy nature.',
+                        timestamp: '1 day ago'
+                    },
+                    {
+                        content: 'Working on a new project using vanilla JavaScript. Back to basics!',
+                        timestamp: '3 days ago'
+                    }
+                ]
+            },
+            'jane_smith': {
+                name: 'Jane Smith',
+                username: '@jane_smith',
+                avatar: 'JS',
+                bio: 'UX/UI Designer with 5+ years of experience. I believe in creating beautiful, functional designs that solve real problems. When not designing, you can find me hiking or reading.',
+                posts: [
+                    {
+                        content: 'Design tip: Always consider accessibility from the start, not as an afterthought.',
+                        timestamp: '4 hours ago'
+                    },
+                    {
+                        content: 'Just completed a user research session. The insights are incredible!',
+                        timestamp: '2 days ago'
+                    }
+                ]
+            },
+            'mike_wilson': {
+                name: 'Mike Wilson',
+                username: '@mike_wilson',
+                avatar: 'MW',
+                bio: 'Full-stack developer and tech enthusiast. Building scalable applications and sharing knowledge with the developer community. Always up for a good tech discussion!',
+                posts: [
+                    {
+                        content: 'Exploring the latest features in ES2024. The new array methods are game-changers!',
+                        timestamp: '6 hours ago'
+                    },
+                    {
+                        content: 'Database optimization can make such a huge difference in application performance.',
+                        timestamp: '1 day ago'
+                    },
+                    {
+                        content: 'Anyone else excited about the new CSS container queries?',
+                        timestamp: '4 days ago'
+                    }
+                ]
+            }
+        };
+
+        // Function to open new post modal
+        function openPostModal() {
+            $('#post-modal').fadeIn(300);
+            $('#post-content').focus();
+        }
+
+        // Function to close new post modal
+        function closePostModal() {
+            $('#post-modal').fadeOut(300);
+            $('#post-form')[0].reset();
+        }
+
+        // Function to create a new post
+        function createNewPost(userId, content) {
+            const user = users[userId];
+            const newPost = {
+                content: content,
+                timestamp: 'Just now'
+            };
+            
+            // Add to user's posts array at the beginning
+            user.posts.unshift(newPost);
+            
+            // Create HTML for the new post
+            const postHtml = `
+                <div class="post" style="animation: slideIn 0.5s ease-out;">
+                    <div class="user-info" data-user-id="${userId}">
+                        <div class="avatar">${user.avatar}</div>
+                        <div class="user-details">
+                            <h3>${user.name}</h3>
+                            <div class="username">${user.username}</div>
+                        </div>
+                    </div>
+                    <div class="post-content">${content}</div>
+                    <div class="post-meta">Just now</div>
+                </div>
+            `;
+            
+            // Add to the top of the posts container
+            $('#posts-container').prepend(postHtml);
+        }
+
+        // Function to create all posts for the main feed
+        function createMainFeed() {
+            const postsContainer = $('#posts-container');
+            const allPosts = [];
+
+            // Collect all posts with user info
+            Object.keys(users).forEach(userId => {
+                const user = users[userId];
+                user.posts.forEach(post => {
+                    allPosts.push({
+                        userId: userId,
+                        user: user,
+                        post: post
+                    });
+                });
+            });
+
+            // Sort posts by timestamp (newest first)
+            allPosts.sort((a, b) => {
+                const timeA = parseTimeAgo(a.post.timestamp);
+                const timeB = parseTimeAgo(b.post.timestamp);
+                return timeA - timeB;
+            });
+
+            // Create HTML for each post
+            allPosts.forEach(item => {
+                const postHtml = `
+                    <div class="post">
+                        <div class="user-info" data-user-id="${item.userId}">
+                            <div class="avatar">${item.user.avatar}</div>
+                            <div class="user-details">
+                                <h3>${item.user.name}</h3>
+                                <div class="username">${item.user.username}</div>
+                            </div>
+                        </div>
+                        <div class="post-content">${item.post.content}</div>
+                        <div class="post-meta">${item.post.timestamp}</div>
+                    </div>
+                `;
+                postsContainer.append(postHtml);
+            });
+        }
+
+        // Helper function to parse time ago for sorting
+        function parseTimeAgo(timeStr) {
+            const num = parseInt(timeStr);
+            if (timeStr.includes('hour')) return num;
+            if (timeStr.includes('day')) return num * 24;
+            return 0;
+        }
+
+        // Function to open bio modal
+        function openBioModal(userId) {
+            const user = users[userId];
+            
+            $('#bio-avatar').text(user.avatar);
+            $('#bio-name').text(user.name);
+            $('#bio-username').text(user.username);
+            $('#bio-intro').text(user.bio);
+            
+            // Clear and populate posts
+            const bioPostsContainer = $('#bio-posts-container');
+            bioPostsContainer.empty();
+            
+            user.posts.forEach(post => {
+                const postHtml = `
+                    <div class="bio-post">
+                        <div class="post-content">${post.content}</div>
+                        <div class="post-meta">${post.timestamp}</div>
+                    </div>
+                `;
+                bioPostsContainer.append(postHtml);
+            });
+            
+            $('#bio-modal').fadeIn(300);
+        }
+
+        // Function to close bio modal
+        function closeBioModal() {
+            $('#bio-modal').fadeOut(300);
+        }
+
+        // Initialize the page
+        $(document).ready(function() {
+            createMainFeed();
+
+            // Event handlers
+            $(document).on('click', '.user-info', function() {
+                const userId = $(this).data('user-id');
+                openBioModal(userId);
+            });
+
+            $('.close-btn').click(closeBioModal);
+
+            // Close modal when clicking outside
+            $('#bio-modal').click(function(e) {
+                if (e.target === this) {
+                    closeBioModal();
+                }
+            });
+
+            // Close modal with Escape key
+            $(document).keydown(function(e) {
+                if (e.key === 'Escape') {
+                    closeBioModal();
+                }
+            });
+
+            // New Post Modal Event Handlers
+            $('#new-post-btn').click(openPostModal);
+            $('#close-post-modal, #cancel-post').click(closePostModal);
+
+            // Close post modal when clicking outside
+            $('#post-modal').click(function(e) {
+                if (e.target === this) {
+                    closePostModal();
+                }
+            });
+
+            // Handle form submission
+            $('#post-form').submit(function(e) {
+                e.preventDefault();
+                
+                const userId = $('#post-user').val();
+                const content = $('#post-content').val().trim();
+                
+                if (userId && content) {
+                    createNewPost(userId, content);
+                    closePostModal();
+                    
+                    // Show success message (optional)
+                    alert('Post created successfully!');
+                }
+            });
+
+            // Character counter for textarea
+            $('#post-content').on('input', function() {
+                const maxLength = 500;
+                const currentLength = $(this).val().length;
+                const remaining = maxLength - currentLength;
+                
+                $(this).siblings('small').text(`${remaining} characters remaining`);
+                
+                if (remaining < 50) {
+                    $(this).siblings('small').css('color', '#dc3545');
+                } else {
+                    $(this).siblings('small').css('color', '#666');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
